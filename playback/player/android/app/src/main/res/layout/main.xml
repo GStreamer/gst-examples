@@ -53,7 +53,7 @@
             android:indeterminate="false" />
     </LinearLayout>
 
-    <org.freedesktop.gstreamer.play.GStreamerSurfaceView
+    <org.freedesktop.gstreamer.player.GStreamerSurfaceView
         android:id="@+id/surface_video"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
