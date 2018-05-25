@@ -18,19 +18,15 @@
  * Boston, MA 02110-1301, USA.
  */
 
-package org.freedesktop.gstreamer.play;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+package org.freedesktop.gstreamer.player;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -38,9 +34,12 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v7.app.AppCompatActivity;
 
 import org.freedesktop.gstreamer.Player;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class Play extends AppCompatActivity implements SurfaceHolder.Callback, OnSeekBarChangeListener {
     private PowerManager.WakeLock wake_lock;

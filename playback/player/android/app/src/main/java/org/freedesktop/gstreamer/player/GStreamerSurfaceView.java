@@ -18,7 +18,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-package org.freedesktop.gstreamer.play;
+package org.freedesktop.gstreamer.player;
 
 import android.content.Context;
 import android.util.AttributeSet;
