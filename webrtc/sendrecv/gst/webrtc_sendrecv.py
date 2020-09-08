@@ -23,6 +23,7 @@ webrtcbin name=sendrecv bundle-policy=max-bundle stun-server=stun://stun.l.googl
  queue ! application/x-rtp,media=audio,encoding-name=OPUS,payload=96 ! sendrecv.
 '''
 
+
 from websockets.version import version as wsv
 
 class WebRTCClient:
@@ -54,7 +55,7 @@ class WebRTCClient:
     def on_offer_created(self, promise, _, __):
         promise.wait()
         reply = promise.get_reply()
-        offer = reply['offer']
+        offer = reply.get_value('offer')
         promise = Gst.Promise.new()
         self.webrtc.emit('set-local-description', offer, promise)
         promise.interrupt()
