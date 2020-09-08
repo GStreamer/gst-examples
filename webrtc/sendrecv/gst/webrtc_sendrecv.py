@@ -24,10 +24,14 @@ from gi.repository import GstSdp
 
 PIPELINE_DESC = '''
 webrtcbin name=sendrecv bundle-policy=max-bundle
- autovideosrc device=/dev/video0 ! videoconvert ! queue ! vp8enc deadline=1 ! rtpvp8pay !
- queue ! application/x-rtp,media=video,encoding-name=VP8,payload=97 ! sendrecv.
+ autovideosrc device=/dev/video0            ! videoconvert ! queue ! vp8enc deadline=1 ! rtpvp8pay !  queue ! application/x-rtp,media=video,encoding-name=VP8,payload=97 ! sendrecv.
+ videotestsrc is-live=true pattern=snow     ! videoconvert ! queue ! vp8enc deadline=1 ! rtpvp8pay !  queue ! application/x-rtp,media=video,encoding-name=VP8,payload=97 ! sendrecv.
+ videotestsrc is-live=true pattern=ball     ! videoconvert ! queue ! vp8enc deadline=1 ! rtpvp8pay !  queue ! application/x-rtp,media=video,encoding-name=VP8,payload=97 ! sendrecv.
+ videotestsrc is-live=true pattern=smpte    ! videoconvert ! queue ! vp8enc deadline=1 ! rtpvp8pay !  queue ! application/x-rtp,media=video,encoding-name=VP8,payload=97 ! sendrecv.
+ videotestsrc is-live=true pattern=gradient ! videoconvert ! queue ! vp8enc deadline=1 ! rtpvp8pay !  queue ! application/x-rtp,media=video,encoding-name=VP8,payload=97 ! sendrecv.
 '''
 
+## TODO: Create 16 low-quality channels
 
 from websockets.version import version as wsv
 

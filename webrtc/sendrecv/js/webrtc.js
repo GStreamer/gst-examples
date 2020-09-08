@@ -41,10 +41,6 @@ function handleIncomingError(error) {
     resetState();
 }
 
-function getVideoElement() {
-    return document.getElementById("stream");
-}
-
 function setStatus(text) {
     console.log(text);
     var span = document.getElementById("status")
@@ -61,11 +57,20 @@ function setError(text) {
 }
 
 function resetVideo() {
+    var videoElements = document.getElementsByTagName('video');
+
     // Reset the video element and stop showing the last received frame
-    var videoElement = getVideoElement();
-    videoElement.pause();
-    videoElement.src = "";
-    videoElement.load();
+    for(var videoElement of videoElements) {
+        videoElement.pause();
+        videoElement.src = "";
+        videoElement.load();
+    }
+
+    // Clear video elements
+    var streams = document.getElementById('streams');
+    while (streams.firstChild) {
+        streams.removeChild(streams.firstChild);
+    }
 }
 
 // SDP offer received from peer, set remote description and create an answer
@@ -206,11 +211,25 @@ function websocketServerConnect() {
     ws_conn.addEventListener('close', onServerClose);
 }
 
+function onRemoteStream(stream) {
+    console.log('onRemoteStream', stream);
+}
+
 function onRemoteTrack(event) {
-    if (getVideoElement().srcObject !== event.streams[0]) {
-        console.log('Incoming stream');
-        getVideoElement().srcObject = event.streams[0];
-    }
+    console.log('onRemoteTrack', event);
+
+    var row = document.getElementById('streams');
+    var cell = document.createElement('td');
+    var video = document.createElement('video');
+
+    video.setAttribute('playsinline', true);
+    video.setAttribute('autoplay', true);
+
+    cell.appendChild(video);
+    row.appendChild(cell);
+
+    video.srcObject = event.streams[0];
+
 }
 
 const handleDataChannelOpen = (event) =>{
@@ -262,6 +281,7 @@ function createCall(msg) {
     send_channel.onclose = handleDataChannelClose;
     peer_connection.ondatachannel = onDataChannel;
     peer_connection.ontrack = onRemoteTrack;
+    peer_connection.onaddstream = onRemoteStream;
 
     if (msg != null && !msg.sdp) {
         console.log("WARNING: First message wasn't an SDP message!?");

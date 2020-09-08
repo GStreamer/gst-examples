@@ -16,7 +16,7 @@
       .error { color: red; }
       video { height: 200px }
       table { width: 100%; border: 1px solid grey; text-align: center }
-      .table-cell { border: 1px solid gray; background: gray }
+      table td { border: 1px solid gray; background: gray }
     </style>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script src="webrtc.js"></script>
@@ -27,23 +27,8 @@
 
   <body>
     <table>
-      <thead>
-        <tr>
-          <td>Stream 0 / CAM1</td>
-          <td>Stream 1 / Test 1</td>
-          <td>Stream 2 / Test 2</td>
-          <td>Stream 3 / Test 3</td>
-          <td>Stream 4 / Test 4</td>
-        </tr>
-      </thead>
       <tbody>
-        <tr>
-          <td class="table-cell"><video id="stream0" autoplay playsinline></video></td>
-          <td class="table-cell"><video id="stream1" autoplay playsinline></video></td>
-          <td class="table-cell"><video id="stream2" autoplay playsinline></video></td>
-          <td class="table-cell"><video id="stream3" autoplay playsinline></video></td>
-          <td class="table-cell"><video id="stream4" autoplay playsinline></video></td>
-        </tr>
+        <tr id="streams"></tr>
       </tbody>
     </table>
 
