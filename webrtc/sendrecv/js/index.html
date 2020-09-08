@@ -14,6 +14,9 @@
     <meta charset="utf-8"/>
     <style>
       .error { color: red; }
+      video { height: 200px }
+      table { width: 100%; border: 1px solid grey; text-align: center }
+      .table-cell { border: 1px solid gray; background: gray }
     </style>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script src="webrtc.js"></script>
@@ -23,10 +26,40 @@
   </head>
 
   <body>
-    <div><video id="stream" autoplay playsinline>Your browser doesn't support video</video></div>
+    <table>
+      <thead>
+        <tr>
+          <td>Stream 0 / CAM1</td>
+          <td>Stream 1 / Test 1</td>
+          <td>Stream 2 / Test 2</td>
+          <td>Stream 3 / Test 3</td>
+          <td>Stream 4 / Test 4</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="table-cell"><video id="stream0" autoplay playsinline></video></td>
+          <td class="table-cell"><video id="stream1" autoplay playsinline></video></td>
+          <td class="table-cell"><video id="stream2" autoplay playsinline></video></td>
+          <td class="table-cell"><video id="stream3" autoplay playsinline></video></td>
+          <td class="table-cell"><video id="stream4" autoplay playsinline></video></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br>
+
     <div>Status: <span id="status">unknown</span></div>
     <div><textarea id="text" cols=40 rows=4></textarea></div>
     <div>Our id is <b id="peer-id">unknown</b></div>
     <br/>
+
+    NOTE: If you see red error go
+    <script>
+      var url = 'https://' + window.location.hostname + ':8443';
+      document.write('<a target="_blank" href="'+ url +'">here</a>');
+    </script>
+    and accept certificate warning
+
   </body>
 </html>
