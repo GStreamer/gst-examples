@@ -227,12 +227,14 @@ class WebRTCSimpleServer(object):
         return uid
 
     def get_ssl_certs(self):
-        if 'letsencrypt' in self.cert_path:
-            chain_pem = os.path.join(self.cert_path, 'fullchain.pem')
-            key_pem = os.path.join(self.cert_path, 'privkey.pem')
-        else:
-            chain_pem = os.path.join(self.cert_path, 'cert.pem')
-            key_pem = os.path.join(self.cert_path, 'key.pem')
+        # if 'letsencrypt' in self.cert_path:
+        #     chain_pem = os.path.join(self.cert_path, 'fullchain.pem')
+        #     key_pem = os.path.join(self.cert_path, 'privkey.pem')
+        # else:
+        #     chain_pem = os.path.join(self.cert_path, 'cert.pem')
+        #     key_pem = os.path.join(self.cert_path, 'key.pem')
+        chain_pem = '/etc/editshare/ssl/server-cert.pem'
+        key_pem = '/etc/editshare/ssl/server.key'
         return chain_pem, key_pem
 
     def get_ssl_ctx(self):
